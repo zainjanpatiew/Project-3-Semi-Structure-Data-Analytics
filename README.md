@@ -1,13 +1,34 @@
 # Project-3-Semi-Structure-Data-Analytics
 
-In this project, I will be working on a sample data from MongoDB called "sample_supplies"
+In this project, I will work with sample data from MongoDB, which is called "sample_supplies." My tasks include displaying the top 10 product sales, the top 3 product sales by store, ranking each store, creating a table showing the purchased method by gender, and calculating the monthly total sales. To accomplish this, I need to filter, download, and compile information such as product name, quantity, gender, price, store location, purchase method, and sale date.
 
-The tasks that I was given was to display top 10 products sales, top 3 products sales by store, the rankings of each store, purchased method by gender table and lastly the monthly total sales. These can be obtained by filtering out, downloading and compiling the product name, quantity, gender, price, store location , purchase method and sale date. 
+Let's walk through the steps I followed:
 
-Now I will be showing a walkthrough on my workings. 
+**Step 1: Loading Data from MongoDB to Visual Studio Code**
+I used the "MongoDB for VS Code" extension to connect to MongoDB directly from Visual Studio Code. This extension allows me to navigate databases and collections, inspect schemas, and prototype queries and aggregations.
 
-The very first step it to load sample_supplies from mongoDB to my Visual Studio Code with the help of an extension called "MongoDB for VS Code" This extension allows you to connect to MongoDB and Atlas directly from your VS Code environment, navigate your databases and collections, inspect your schema and use playgrounds to prototype queries and aggregations. 
+**Step 2: Obtaining the Connection String**
+After connecting to the data samples, I needed to obtain the connection string to download the data to my computer.
 
-Once I have installed the extension and connect the data samples, I have to obtain the connection string in order to download the data into my computer. In order to download the sample data, I have install the database tool provided by mongoDB (https://www.mongodb.com/docs/database-tools/installation/installation-windows/). After installing the tool, I must run this code in the terminal "mongoexport --uri="mongodb+srv://new-user1:new-user1@bda.6whad1f.mongodb.net/sample_supplies" --collection="sales" --out=sales.csv --type=csv --fields=customer,items,purchaseMethod,saleDate,storeLocation" This command line basically gets the string of my connection, the file selected, file type and the fields which must be downloaded. 
+**Step 3: Downloading the Sample Data**
+To download the sample data, I installed the MongoDB database tool provided by MongoDB. You can find it here: [link](https://www.mongodb.com/docs/database-tools/installation/installation-windows/). I ran the following command in the terminal:
 
-The file itself is called "sales.csv" which can be found on the location on where I have run the command line. The csv file contains customer, items, purchaseMethod, saleDate and storeLocation in the rows. In the customer field, I must extract gender. This can be done in excel with the following line "=MID(A2, FIND("gender", A2) + 9, 1)" Now I will have to extract the product name, price and quantity from the row items which will be done in jupyter notebook. Sale date has the sales time included but only the columns in YYYY-MM-DD format is needed so I used this line in excel to remove it "=TEXT(DATEVALUE(LEFT(D2, 10)), "yyyy-mm-dd")" 
+
+mongoexport --uri="mongodb+srv://new-user1:new-user1@bda.6whad1f.mongodb.net/sample_supplies" --collection="sales" --out=sales.csv --type=csv --fields=customer,items,purchaseMethod,saleDate,storeLocation
+
+This command specifies the connection string, output file, file type, and the fields to download. The resulting file, "sales.csv," contains customer, items, purchaseMethod, saleDate, and storeLocation in its rows.
+
+**Step 4: Extracting Gender from Customer Field**
+In the customer field, I needed to extract gender. I achieved this in Excel with the following formula:
+
+=MID(A2, FIND("gender", A2) + 9, 1)
+
+**Step 5: Extracting Product Name, Price, and Quantity**
+To extract the product name, price, and quantity from the "items" column, I used Jupyter Notebook.
+
+**Step 6: Formatting Sale Date**
+The sale date contains the sales time, but I only needed the date in the "YYYY-MM-DD" format. I used the following Excel formula to achieve this:
+
+=TEXT(DATEVALUE(LEFT(D2, 10)), "yyyy-mm-dd")
+
+These steps will allow me to work with the data more effectively and perform the required tasks.
